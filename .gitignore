@@ -1,3 +1,4 @@
+*.un~
 *.gem
 .bundle
 Gemfile.lock
@@ -7,3 +8,7 @@ doc/*
 spec/pag_seguro/integration/config_example.yml
 .DS_Store
 .sublime-project
+
+*.swp
+.vagrant
+Vagrantfile
