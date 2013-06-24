@@ -14,15 +14,19 @@ module PagSeguro
     validates_format_of :redirect_url, with: URI::regexp(%w(http https)), message: " must give a correct url for redirection", allow_blank: true
     validate :max_uses_number, :max_age_number, :valid_pre_approval, :valid_items
 
-    def initialize(email = nil, token = nil, options = {})
-      @email        = email unless email.nil?
-      @token        = token unless token.nil?
+    def config
+      PagSeguro.config
+    end
+
+    def initialize(options = {})
+      @email        = config.email or raise "Must provide an email"
+      @token        = config.token or raise "Must provide a token"
       @id           = options[:id]
       @sender       = options[:sender] || Sender.new
       @shipping     = options[:shipping]
       @items        = options[:items] || []
       @extra_amount = options[:extra_amount]
-      @redirect_url = options[:redirect_url]
+      @redirect_url = config.redirect_url || options[:redirect_url]
       @max_uses     = options[:max_uses]
       @max_age      = options[:max_age]
       @pre_approval = options[:pre_approval]
