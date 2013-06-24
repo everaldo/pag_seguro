@@ -3,6 +3,20 @@ require 'net/https'
 
 module PagSeguro
   class Transaction
+    extend Forwardable
+
+    def_delegators :config, :email, :token
+
+    class << self
+      extend Forwardable
+      def config
+        PagSeguro.config
+      end
+
+      def_delegators :config, :email, :token
+    end
+
+
     attr_accessor :data
 
     PAGSEGURO_TRANSACTIONS_URL  = "https://ws.pagseguro.uol.com.br/v2/transactions"
@@ -184,6 +198,10 @@ module PagSeguro
       def parse_css(selector)
         value = @data.css(selector).first
         value.nil? ? nil : value.content
+      end
+    private
+      def config
+        PagSeguro.config
       end
   end
 end
