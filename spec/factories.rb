@@ -48,16 +48,11 @@ FactoryGirl.define do
   end
 
   factory :payment, class: PagSeguro::Payment do
-    ignore do
-      email               'myemail'
-      token               'mytoken'
-    end
     items                 []
     shipping              nil
     sender                nil
     pre_approval          nil
 
-    initialize_with { new(email, token) }
 
     factory(:payment_with_item)                 { items { [build(:item)] } }
     factory(:payment_with_items)                { items { [build(:item_1), build(:item_2), build(:item_3), build(:item_4)] } }

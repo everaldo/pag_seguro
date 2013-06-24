@@ -27,3 +27,9 @@ RSpec::Matchers.define :have_attribute_accessor do |attribute|
     "have attr_accessor :#{attribute}"
   end
 end
+
+
+PagSeguro.configure do |config|
+  config.email = "myemail"
+  config.token = "mytoken"
+end
