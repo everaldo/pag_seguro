@@ -14,10 +14,6 @@ module PagSeguro
     validates_format_of :redirect_url, with: URI::regexp(%w(http https)), message: " must give a correct url for redirection", allow_blank: true
     validate :max_uses_number, :max_age_number, :valid_pre_approval, :valid_items
 
-    def config
-      PagSeguro.config
-    end
-
     def initialize(options = {})
       @email        = config.email or raise "Must provide an email"
       @token        = config.token or raise "Must provide a token"
@@ -113,6 +109,10 @@ module PagSeguro
 
       def parse_code
         Nokogiri::XML(response.body).css("checkout code").first.content
+      end
+    private
+      def config
+        PagSeguro.config
       end
   end
 end
