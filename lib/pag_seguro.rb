@@ -2,6 +2,7 @@ $: << File.expand_path(File.dirname(__FILE__) + "/../lib/pag_seguro")
 
 require "date"
 require "bigdecimal"
+require "singleton"
 
 # Third party gems
 require "active_model"
@@ -13,6 +14,7 @@ require "active_support/time"
 
 require "pagseguro_decimal_validator"
 require "convert_field_to_digit"
+require "configuration"
 
 # PagSeguro classes
 require "item"
