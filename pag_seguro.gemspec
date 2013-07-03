@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.has_rdoc      = false
   
-  s.add_dependency('activemodel')
-  s.add_dependency('activesupport')
+  s.add_dependency('activemodel', '< 4.0')
+  s.add_dependency('activesupport', '< 4.0')
   s.add_dependency('haml', '!= 3.1.5')
   s.add_dependency('nokogiri')
   s.add_dependency('rest-client', '~> 1.6.7')
